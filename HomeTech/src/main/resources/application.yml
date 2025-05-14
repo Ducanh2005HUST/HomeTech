@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: HomeTech
+
+  # Cấu hình PostgreSQL
+  datasource:
+    url: jdbc:postgresql://ep-silent-sea-a1zvezml-pooler.ap-southeast-1.aws.neon.tech:5432/am_database
+    username: am_database_owner
+    password: npg_KizBwCEb8vc6
+    driver-class-name: org.postgresql.Driver
+
+  # Cấu hình JPA/Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: validate # Chỉ kiểm tra dữ liệu, không thay đổi cấu trúc bảng
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+
+  # Cấu hình email
+  mail:
+    host: smtp.gmail.com           # Thay bằng host của dịch vụ email
+    port: 587
+    username: your_email@gmail.com # Thay bằng email gửi
+    password: your_app_password    # Thay bằng mật khẩu ứng dụng
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# Cấu hình ghi log
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    hometech: INFO  # Đã thay đổi từ DEBUG sang INFO
