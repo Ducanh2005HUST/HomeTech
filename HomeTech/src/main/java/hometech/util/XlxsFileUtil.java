@@ -16,7 +16,7 @@ public class XlxsFileUtil<T> {
      * @return List of objects of type T
      * @throws IOException if file cannot be read
      */
-    public List<T> importFromExcel(String filePath, Function<Row, T> rowMapper) throws IOException {
+    public static <T> List<T> importFromExcel(String filePath, Function<Row, T> rowMapper) throws IOException {
         List<T> resultList = new ArrayList<>();
         try (FileInputStream fis = new FileInputStream(filePath);
              Workbook workbook = new XSSFWorkbook(fis)) {

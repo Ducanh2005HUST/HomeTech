@@ -13,5 +13,5 @@ public interface HoaDonService {
     ResponseDto generateHoaDon(KhoanThuDto khoanThuDto);
     List<HoaDonDto> getAllHoaDon();
     ResponseDto addHoaDonTuNguyen(HoaDonTuNguyenDto hoaDonTuNguyenDto, KhoanThuTuNguyenDto khoanThuTuNguyenDto);
-    int importFromExcel(MultipartFile file);
+    ResponseDto importFromExcel(MultipartFile file);
 }
