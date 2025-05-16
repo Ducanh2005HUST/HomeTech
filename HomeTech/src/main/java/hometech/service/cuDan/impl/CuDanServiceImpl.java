@@ -124,6 +124,9 @@ public class CuDanServiceImpl implements CuDanService {
     }
     @Override
     public ResponseDto exportToExcel(String filePath) {
+        if (Session.getCurrentUser() == null || !"Kế toán".equals(Session.getCurrentUser().getVaiTro())) {
+            return new ResponseDto(false, "Bạn không có quyền xuất khoản thu. Chỉ Kế toán mới được phép.");
+        }
         List<CudanDto> cudanDtoList = getAllCuDan();
         String[] headers = {"Mã định danh", "Họ và tên", "Giới tính", "Ngày sinh", "Số điện thoại", "Email", "Trạng thái cư trú", "Ngày chuyển đến", "Ngày chuyển đi", "Mã căn hộ"};
         try {
@@ -131,12 +134,12 @@ public class CuDanServiceImpl implements CuDanService {
                 row.createCell(0).setCellValue(cudanDto.getMaDinhDanh());
                 row.createCell(1).setCellValue(cudanDto.getHoVaTen());
                 row.createCell(2).setCellValue(cudanDto.getGioiTinh());
-                row.createCell(3).setCellValue(cudanDto.getNgaySinh().toString());
+                row.createCell(3).setCellValue(java.sql.Date.valueOf(cudanDto.getNgaySinh()));
                 row.createCell(4).setCellValue(cudanDto.getSoDienThoai());
                 row.createCell(5).setCellValue(cudanDto.getEmail());
                 row.createCell(6).setCellValue(cudanDto.getTrangThaiCuTru());
-                row.createCell(7).setCellValue(cudanDto.getNgayChuyenDen().toString());
-                row.createCell(8).setCellValue(cudanDto.getNgayChuyenDi().toString());
+                row.createCell(7).setCellValue(java.sql.Date.valueOf(cudanDto.getNgayChuyenDen()));
+                row.createCell(8).setCellValue(java.sql.Date.valueOf(cudanDto.getNgayChuyenDi()));
                 row.createCell(9).setCellValue(cudanDto.getMaCanHo());
             });
             return new ResponseDto(true, "Xuất cư dân thành công");

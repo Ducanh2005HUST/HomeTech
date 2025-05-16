@@ -18,6 +18,7 @@ import hometech.model.mapper.CanHoMapper;
 import hometech.repository.CanHoRepository;
 import hometech.service.canHo.CanHoService;
 import hometech.session.Session;
+import hometech.util.XlsxExportUtil;
 import hometech.util.XlxsFileUtil;
 
 @Service
@@ -95,4 +96,28 @@ public class CanHoServiceImpl implements CanHoService {
         }
     }
     
+    @Override
+    public ResponseDto exportToExcel(String filePath) {
+        if (Session.getCurrentUser() == null || !"Kế toán".equals(Session.getCurrentUser().getVaiTro())) {
+            return new ResponseDto(false, "Bạn không có quyền xuất khoản thu. Chỉ Kế toán mới được phép.");
+        }
+        String[] headers = {"Mã căn hộ", "Tên tòa nhà", "Số tầng", "Số nhà", "Diện tích", "Chủ hộ", "Đã bán chưa", "Trạng thái kỹ thuật", "Trạng thái sử dụng"};
+        List<CanHoDto> canHoList = getAllCanHo();
+        try {
+            XlsxExportUtil.exportToExcel(filePath, headers, canHoList, (row, canHo) -> {
+                row.createCell(0).setCellValue(canHo.getMaCanHo());
+                row.createCell(1).setCellValue(canHo.getToaNha());
+                row.createCell(2).setCellValue(canHo.getTang());
+                row.createCell(3).setCellValue(canHo.getSoNha());
+                row.createCell(4).setCellValue(canHo.getDienTich());
+                row.createCell(5).setCellValue(canHo.getChuHo() != null ? canHo.getChuHo().getHoVaTen() : "");
+                row.createCell(6).setCellValue(canHo.isDaBanChua() ? "Có" : "Không");
+                row.createCell(7).setCellValue(canHo.getTrangThaiKiThuat());
+                row.createCell(8).setCellValue(canHo.getTrangThaiSuDung());
+            });
+            return new ResponseDto(true, "Xuất file thành công");
+        } catch (Exception e) {
+            return new ResponseDto(false, "Xuất file thất bại: " + e.getMessage());
+        }
+    }
 }

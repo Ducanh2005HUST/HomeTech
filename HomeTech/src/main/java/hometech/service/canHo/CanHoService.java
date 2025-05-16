@@ -17,4 +17,5 @@ public interface CanHoService {
 
     ResponseDto importFromExcel(MultipartFile file);
 
+    ResponseDto exportToExcel(String filePath);
 }

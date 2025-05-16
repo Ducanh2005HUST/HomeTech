@@ -13,6 +13,7 @@ import hometech.repository.KhoanThuRepository;
 import org.springframework.stereotype.Service;
 import java.util.stream.Collectors;
 import hometech.session.Session;
+import hometech.util.XlsxExportUtil;
 import hometech.util.XlxsFileUtil;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -140,7 +141,7 @@ public class KhoanThuServiceImpl implements KhoanThuService {
                     dto.setTenKhoanThu(row.getCell(1).getStringCellValue());
                     dto.setBatBuoc(row.getCell(2).getBooleanCellValue());
                     dto.setDonViTinh(row.getCell(3).getStringCellValue());
-                    dto.setSoTien((int) row.getCell(4).getNumericCellValue());
+                    dto.setSoTien(Integer.parseInt(row.getCell(4).getStringCellValue()));
                     dto.setPhamVi(row.getCell(5).getStringCellValue());
                     dto.setNgayTao(row.getCell(6).getDateCellValue().toInstant()
                         .atZone(java.time.ZoneId.systemDefault()).toLocalDate());
@@ -159,6 +160,30 @@ public class KhoanThuServiceImpl implements KhoanThuService {
             return new ResponseDto(true, "Thêm khoản thu thành công " + khoanThuList.size() + " khoản thu");
         } catch (Exception e) {
             return new ResponseDto(false, "Thêm khoản thu thất bại: " + e.getMessage());
+        }
+    }
+    @Override
+    public ResponseDto exportToExcel(String filePath) {
+        if (Session.getCurrentUser() == null || !"Kế toán".equals(Session.getCurrentUser().getVaiTro())) {
+            return new ResponseDto(false, "Bạn không có quyền xuất khoản thu. Chỉ Kế toán mới được phép.");
+        }
+        List<KhoanThu> khoanThuList = khoanThuRepository.findAll();
+        String[] headers = {"Mã khoản thu", "Tên khoản thu", "Bắt buộc", "Đơn vị tính", "Số tiền", "Phạm vi", "Ngày tạo", "Thời hạn", "Ghi chú"};
+        try {
+            XlsxExportUtil.exportToExcel(filePath, headers, khoanThuList, (row, khoanThu) -> {
+                row.createCell(0).setCellValue(khoanThu.getMaKhoanThu());
+                row.createCell(1).setCellValue(khoanThu.getTenKhoanThu());
+                row.createCell(2).setCellValue(khoanThu.isBatBuoc());
+                row.createCell(3).setCellValue(khoanThu.getDonViTinh());
+                row.createCell(4).setCellValue(khoanThu.getSoTien());
+                row.createCell(5).setCellValue(khoanThu.getPhamVi());
+                row.createCell(6).setCellValue(java.sql.Date.valueOf(khoanThu.getNgayTao()));
+                row.createCell(7).setCellValue(java.sql.Date.valueOf(khoanThu.getThoiHan()));
+                row.createCell(8).setCellValue(khoanThu.getGhiChu());
+            });
+            return new ResponseDto(true, "Xuất file thành công");
+        } catch (Exception e) {
+            return new ResponseDto(false, "Xuất khoản thu thất bại: " + e.getMessage());
         }
     }
 }
