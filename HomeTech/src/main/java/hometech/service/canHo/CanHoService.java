@@ -11,5 +11,9 @@ public interface CanHoService {
 
     ResponseDto addCanHo(CanHoDto canHoDto);
 
+    ResponseDto updateCanHo(CanHoDto canHoDto);
+
+    ResponseDto deleteCanHo(CanHoDto canHoDto);
+
     CanHoChiTietDto getCanHoChiTiet(CanHoDto canHoDto);
 }
