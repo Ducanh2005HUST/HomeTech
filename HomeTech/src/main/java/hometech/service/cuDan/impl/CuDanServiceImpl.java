@@ -1,5 +1,12 @@
 package hometech.service.cuDan.impl;
 
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import hometech.repository.CanHoRepository;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
@@ -8,7 +15,6 @@ import java.util.stream.Collectors;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.util.function.Function;
 
 import hometech.model.dto.ResponseDto;
@@ -25,11 +31,13 @@ import hometech.util.XlxsFileUtil;
 public class CuDanServiceImpl implements CuDanService {
 
     private final CuDanRepository cuDanRepository;
+    private final CanHoRepository canHoRepository;
     private final CuDanMapper cuDanMapper;
-    
-    public CuDanServiceImpl(CuDanRepository cuDanRepository, CuDanMapper cuDanMapper) {
+
+    public CuDanServiceImpl(CuDanRepository cuDanRepository, CuDanMapper cuDanMapper, CanHoRepository canHoRepository) {
         this.cuDanRepository = cuDanRepository;
         this.cuDanMapper = cuDanMapper;
+        this.canHoRepository = canHoRepository;
     }
 
     @Override
@@ -47,8 +55,10 @@ public class CuDanServiceImpl implements CuDanService {
         }
         if (cuDanRepository.existsById(cudanDto.getMaDinhDanh())) {
             return new ResponseDto(false, "Cư dân đã tồn tại");
+        }if (cudanDto.getMaCanHo() != null && !canHoRepository.existsById(cudanDto.getMaCanHo())) {
+            return new ResponseDto(false, "Không tìm thấy căn hộ");
         }
-        
+        cudanDto.setNgayChuyenDen(LocalDate.now());
         CuDan cuDan = cuDanMapper.fromCudanDto(cudanDto);
         cuDanRepository.save(cuDan);
         return new ResponseDto(true, "Thêm cư dân thành công");
@@ -62,7 +72,9 @@ public class CuDanServiceImpl implements CuDanService {
         if (!cuDanRepository.existsById(cudanDto.getMaDinhDanh())) {
             return new ResponseDto(false, "Không tìm thấy cư dân");
         }
-        
+        if (cudanDto.getMaCanHo() != null && !canHoRepository.existsById(cudanDto.getMaCanHo())) {
+            return new ResponseDto(false, "Không tìm thấy căn hộ");
+        }
         CuDan cuDan = cuDanMapper.fromCudanDto(cudanDto);
         cuDanRepository.save(cuDan);
         return new ResponseDto(true, "Cập nhật cư dân thành công");
@@ -76,8 +88,11 @@ public class CuDanServiceImpl implements CuDanService {
         if (!cuDanRepository.existsById(cudanDto.getMaDinhDanh())) {
             return new ResponseDto(false, "Không tìm thấy cư dân");
         }
-        
-        cuDanRepository.deleteById(cudanDto.getMaDinhDanh());
+
+        CuDan cuDan = cuDanRepository.findById(cudanDto.getMaDinhDanh()).orElse(null);
+        cuDan.setNgayChuyenDi(LocalDate.now());
+        cuDan.setTrangThaiCuTru("Đã chuyển đi");
+        cuDanRepository.save(cuDan);
         return new ResponseDto(true, "Xóa cư dân thành công");
     }
     @Override

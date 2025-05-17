@@ -61,6 +61,31 @@ public class CanHoServiceImpl implements CanHoService {
         canHoRepository.save(canHo);
         return new ResponseDto(true, "Căn hộ đã được thêm thành công");
     }
+
+
+    @Override
+    public ResponseDto updateCanHo(CanHoDto canHoDto) {
+        if (Session.getCurrentUser() == null || !"Tổ phó".equals(Session.getCurrentUser().getVaiTro())) {
+            return new ResponseDto(false, "Bạn không có quyền cập nhật căn hộ. Chỉ Tổ phó mới được phép.");
+        }
+        if (canHoRepository.existsById(canHoDto.getMaCanHo())) {
+            return new ResponseDto(false, "Căn hộ đã tồn tại");
+        }
+        CanHo canHo = canHoMapper.fromCanHoDto(canHoDto);
+        canHoRepository.save(canHo);
+        return new ResponseDto(true, "Căn hộ đã được cập nhật thành công");
+    }
+
+    @Override
+    public ResponseDto deleteCanHo(CanHoDto canHoDto) {
+        if (Session.getCurrentUser() == null || !"Tổ phó".equals(Session.getCurrentUser().getVaiTro())) {
+            return new ResponseDto(false, "Bạn không có quyền xóa căn hộ. Chỉ Tổ phó mới được phép.");
+        }
+        canHoRepository.deleteById(canHoDto.getMaCanHo());
+        return new ResponseDto(true, "Căn hộ đã được xóa thành công");
+    }
+
+
     @Override
     public ResponseDto importFromExcel(MultipartFile file) {
         if (Session.getCurrentUser() == null || !"Kế toán".equals(Session.getCurrentUser().getVaiTro())) {
@@ -95,6 +120,7 @@ public class CanHoServiceImpl implements CanHoService {
             return new ResponseDto(false, "Thêm căn hộ thất bại: " + e.getMessage());
         }
     }
+
     
     @Override
     public ResponseDto exportToExcel(String filePath) {
