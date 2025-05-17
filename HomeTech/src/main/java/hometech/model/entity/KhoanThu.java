@@ -19,6 +19,7 @@ import java.util.List;
 @Entity
 public class KhoanThu {
     @Id
+    @Column(name = "ma_khoan_thu")
     private String maKhoanThu;
 
     @Column(name = "ten_khoan_thu")
