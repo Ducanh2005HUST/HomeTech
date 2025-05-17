@@ -20,11 +20,12 @@ import lombok.NoArgsConstructor;
 @Entity
 public class CanHo {
     @Id
+    @Column(name = "ma_can_ho")
     private String maCanHo;
     @Column(name = "toa_nha")
     private String toaNha;
     @Column(name = "tang")
-    private int tang;
+    private String tang;
     @Column(name = "so_nha")
     private String soNha;
     @Column(name = "dien_tich")

@@ -23,7 +23,6 @@ public interface CanHoMapper {
     @Mapping(target = "chuHo.gioiTinh", ignore = true)
     @Mapping(target = "chuHo.ngayChuyenDen", ignore = true)
     @Mapping(target = "chuHo.ngayChuyenDi", ignore = true)
-    @Mapping(target = "chuHo.canHoList", ignore = true)
     @Mapping(target = "chuHo.canHo", ignore = true)
     CanHo fromCanHoDto(CanHoDto canHoDto);
 }

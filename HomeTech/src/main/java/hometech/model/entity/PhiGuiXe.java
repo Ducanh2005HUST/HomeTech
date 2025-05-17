@@ -23,6 +23,6 @@ public class PhiGuiXe {
     private int soTien;
 
     @ManyToOne
-    @JoinColumn(name = "khoan_thu")
+    @JoinColumn(name = "ma_khoan_thu", referencedColumnName = "ma_khoan_thu")
     private KhoanThu khoanThu;   
 }
