@@ -158,34 +158,35 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
     @Override
-    public int importFromExcel(MultipartFile file) {
+    public ResponseDto importFromExcel(MultipartFile file) {
+        if (Session.getCurrentUser() == null || !"Kế toán".equals(Session.getCurrentUser().getVaiTro())) {
+            return new ResponseDto(false, "Bạn không có quyền thêm hóa đơn tự nguyện. Chỉ Kế toán mới được phép.");
+        }
         try {
-            File tempFile = File.createTempFile("hoadondichvu_import", ".xlsx");
+            File tempFile = File.createTempFile("hoadondichvu_temp", ".xlsx");
             try (FileOutputStream fos = new FileOutputStream(tempFile)) {
                 fos.write(file.getBytes());
             }
-            XlxsFileUtil<HoaDonDichVuDto> util = new XlxsFileUtil<>();
             Function<Row, HoaDonDichVuDto> rowMapper = row -> {
                 try {
                     HoaDonDichVuDto dto = new HoaDonDichVuDto();
                     dto.setTenKhoanThu(row.getCell(0).getStringCellValue());
                     dto.setMaCanHo(row.getCell(1).getStringCellValue());
                     dto.setSoTien((int) row.getCell(2).getNumericCellValue());
-                    // Add more fields if needed
                     return dto;
                 } catch (Exception e) {
                     return null;
                 }
             };
-            List<HoaDonDichVuDto> hoaDonDichVuDtoList = util.importFromExcel(tempFile.getAbsolutePath(), rowMapper);
+            List<HoaDonDichVuDto> hoaDonDichVuDtoList = XlxsFileUtil.importFromExcel(tempFile.getAbsolutePath(), rowMapper);
             List<HoaDon> hoaDonList = hoaDonDichVuDtoList.stream()
                 .map(hoaDonMapper::fromHoaDonDichVuDto)
                 .collect(Collectors.toList());
             hoaDonRepository.saveAll(hoaDonList);
             tempFile.delete();
-            return hoaDonList.size();
+            return new ResponseDto(true, "Đã import thành công " + hoaDonList.size() + " hóa đơn từ file Excel.");
         } catch (Exception e) {
-            throw new RuntimeException("Failed to import HoaDon from Excel", e);
+            return new ResponseDto(false, "Import hóa đơn từ Excel thất bại: " + e.getMessage());
         }
     }
 }
