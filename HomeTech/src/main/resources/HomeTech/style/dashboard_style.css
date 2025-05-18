@@ -111,6 +111,10 @@
     -fx-background-color: transparent;
 }
 
+.scroll-pane {
+    -fx-background: white;
+}
+
 .text-field-normal { /* Nền trắng viền xám chữ đen */
     -fx-background-color: #ffffff;
     -fx-border-color: #D9D9D9;
@@ -214,6 +218,10 @@
     -fx-padding: 4px;
 }
 
+.table-row-cell {
+    -fx-cell-size: -1;
+}
+
 .screen-title {
     -fx-text-fill: #4472C4;
     -fx-font-weight: bold;
@@ -226,13 +234,38 @@
 .popup-title {
     -fx-text-fill: #333333;
     -fx-font-weight: bold;
-    -fx-font-size: 18px;
+    -fx-font-size: 20px;
+    -fx-pref-height: 40px;
+}
+
+.popup-title-multiple {
+     -fx-text-fill: #A6A6A6;
+     -fx-font-weight: bold;
+     -fx-font-size: 20px;
+     -fx-pref-height: 40px;
+     -fx-border-width: 0 0 0 0;
+     -fx-background-color: transparent;
+}
+
+.popup-title-multiple:hover {
+     -fx-text-fill: #333333;
+}
+
+.popup-title-multiple.active {
+     -fx-text-fill: #333333;
+     -fx-border-width: 0 0 3 0;
+     -fx-border-color: #4472C4;
 }
 
 .text-bold {
     -fx-font-size: 14px;
     -fx-text-fill: #333333;
     -fx-font-weight: bold;
+}
+
+.text-normal {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
 }
 
 .button-close {
@@ -247,3 +280,72 @@
 .button-close: hover .button-icon-close {
     -fx-fill: #333333;
 }
+
+.check-box {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: #888888;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-padding: 3;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #4472C4;
+    -fx-border-color: #4472C4;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.date-picker {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #D9D9D9;
+    -fx-border-width: 2px;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-pref-height: 30px;
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.date-picker .text-field {
+    -fx-background-color: white;
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #A6A6A6;
+}
+
+.date-picker-popup {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: #4472C4;
+    -fx-background-radius: 5;
+    -fx-pref-height: 30px;
+}
+
+.date-picker .arrow-button:hover {
+    -fx-effect: innershadow(gaussian, rgba(255,255,255,0.5), 30, 0.1, 0, 0);
+}
+
+.date-picker .arrow-button .arrow {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+}
+
+.text-error {
+    -fx-fill: red;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+}
+
+
