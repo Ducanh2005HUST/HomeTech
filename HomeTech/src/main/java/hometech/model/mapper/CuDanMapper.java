@@ -21,7 +21,6 @@ public interface CuDanMapper {
     CuDan fromCudanDto(CudanDto cudanDto);
 
     @Mapping(target = "canHo", ignore = true)
-    @Mapping(target = "ngayChuyenDen", ignore = true)
     @Mapping(target = "ngayChuyenDi", ignore = true)
     @Mapping(target = "gioiTinh", ignore = true)
     @Mapping(target = "ngaySinh", ignore = true)

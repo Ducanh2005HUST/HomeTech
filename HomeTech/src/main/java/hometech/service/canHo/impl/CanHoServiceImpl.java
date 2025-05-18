@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.time.LocalDate;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.stereotype.Service;
@@ -56,12 +57,14 @@ public class CanHoServiceImpl implements CanHoService {
         if (canHoRepository.existsById(canHoDto.getMaCanHo())) {
             return new ResponseDto(false, "Căn hộ đã tồn tại");
         }
+        if(canHoDto.getChuHo().getTrangThaiCuTru() == "Cư trú" && canHoDto.getChuHo().getNgayChuyenDen() == null) {
+            canHoDto.getChuHo().setNgayChuyenDen(LocalDate.now());
+        }
         // Convert DTO to entity using the mapper
         CanHo canHo = canHoMapper.fromCanHoDto(canHoDto);
         canHoRepository.save(canHo);
         return new ResponseDto(true, "Căn hộ đã được thêm thành công");
     }
-
 
     @Override
     public ResponseDto updateCanHo(CanHoDto canHoDto) {
@@ -85,7 +88,6 @@ public class CanHoServiceImpl implements CanHoService {
         return new ResponseDto(true, "Căn hộ đã được xóa thành công");
     }
 
-
     @Override
     public ResponseDto importFromExcel(MultipartFile file) {
         if (Session.getCurrentUser() == null || !"Kế toán".equals(Session.getCurrentUser().getVaiTro())) {
@@ -100,7 +102,7 @@ public class CanHoServiceImpl implements CanHoService {
                 CanHoDto canHoDto = new CanHoDto();
                 canHoDto.setMaCanHo(row.getCell(0).getStringCellValue());
                 canHoDto.setToaNha(row.getCell(1).getStringCellValue());
-                canHoDto.setTang(Integer.parseInt(row.getCell(2).getStringCellValue()));
+                canHoDto.setTang(row.getCell(2).getStringCellValue());
                 canHoDto.setSoNha(row.getCell(3).getStringCellValue());
                 canHoDto.setDienTich(row.getCell(4).getNumericCellValue());
                 canHoDto.setChuHo(null);
@@ -118,32 +120,6 @@ public class CanHoServiceImpl implements CanHoService {
             return new ResponseDto(true, "Thêm căn hộ thành công" + canHoDtoList.size() + " căn hộ");
         } catch (Exception e) {
             return new ResponseDto(false, "Thêm căn hộ thất bại: " + e.getMessage());
-        }
-    }
-
-    
-    @Override
-    public ResponseDto exportToExcel(String filePath) {
-        if (Session.getCurrentUser() == null || !"Kế toán".equals(Session.getCurrentUser().getVaiTro())) {
-            return new ResponseDto(false, "Bạn không có quyền xuất khoản thu. Chỉ Kế toán mới được phép.");
-        }
-        String[] headers = {"Mã căn hộ", "Tên tòa nhà", "Số tầng", "Số nhà", "Diện tích", "Chủ hộ", "Đã bán chưa", "Trạng thái kỹ thuật", "Trạng thái sử dụng"};
-        List<CanHoDto> canHoList = getAllCanHo();
-        try {
-            XlsxExportUtil.exportToExcel(filePath, headers, canHoList, (row, canHo) -> {
-                row.createCell(0).setCellValue(canHo.getMaCanHo());
-                row.createCell(1).setCellValue(canHo.getToaNha());
-                row.createCell(2).setCellValue(canHo.getTang());
-                row.createCell(3).setCellValue(canHo.getSoNha());
-                row.createCell(4).setCellValue(canHo.getDienTich());
-                row.createCell(5).setCellValue(canHo.getChuHo() != null ? canHo.getChuHo().getHoVaTen() : "");
-                row.createCell(6).setCellValue(canHo.isDaBanChua() ? "Có" : "Không");
-                row.createCell(7).setCellValue(canHo.getTrangThaiKiThuat());
-                row.createCell(8).setCellValue(canHo.getTrangThaiSuDung());
-            });
-            return new ResponseDto(true, "Xuất file thành công");
-        } catch (Exception e) {
-            return new ResponseDto(false, "Xuất file thất bại: " + e.getMessage());
         }
     }
 }

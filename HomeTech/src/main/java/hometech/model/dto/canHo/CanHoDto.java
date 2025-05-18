@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class CanHoDto {
     private String maCanHo;
     private String toaNha;
-    private int tang;
+    private String tang;
     private String soNha;
     private double dienTich;
     private ChuHoDto chuHo;
