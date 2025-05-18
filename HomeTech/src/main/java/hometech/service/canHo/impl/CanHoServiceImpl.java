@@ -122,4 +122,27 @@ public class CanHoServiceImpl implements CanHoService {
             return new ResponseDto(false, "Thêm căn hộ thất bại: " + e.getMessage());
         }
     }
+    @Override
+    public ResponseDto exportToExcel(String filePath) {
+        if (Session.getCurrentUser() == null || !"Kế toán".equals(Session.getCurrentUser().getVaiTro())) {
+            return new ResponseDto(false, "Bạn không có quyền xuất căn hộ. Chỉ Kế toán mới được phép.");
+        }
+        List<CanHoDto> canHoDtoList = getAllCanHo();
+        String[] headers = {"Mã căn hộ", "Tòa nhà", "Tầng", "Số nhà", "Diện tích", "Đã bán/chưa", "Trạng thái kỹ thuật", "Trạng thái sử dụng"};
+        try {
+            XlsxExportUtil.exportToExcel(filePath, headers, canHoDtoList, (row, canHoDto) -> {
+                row.createCell(0).setCellValue(canHoDto.getMaCanHo());
+                row.createCell(1).setCellValue(canHoDto.getToaNha());
+                row.createCell(2).setCellValue(canHoDto.getTang());
+                row.createCell(3).setCellValue(canHoDto.getSoNha());
+                row.createCell(4).setCellValue(canHoDto.getDienTich());
+                row.createCell(5).setCellValue(canHoDto.isDaBanChua());
+                row.createCell(6).setCellValue(canHoDto.getTrangThaiKiThuat());
+                row.createCell(7).setCellValue(canHoDto.getTrangThaiSuDung());
+            });
+            return new ResponseDto(true, "Xuất căn hộ thành công");
+        } catch (Exception e) {
+            return new ResponseDto(false, "Xuất căn hộ thất bại: " + e.getMessage());
+        }
+    }
 }
