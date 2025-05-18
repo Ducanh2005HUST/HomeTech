@@ -58,7 +58,9 @@ public class CuDanServiceImpl implements CuDanService {
         }if (cudanDto.getMaCanHo() != null && !canHoRepository.existsById(cudanDto.getMaCanHo())) {
             return new ResponseDto(false, "Không tìm thấy căn hộ");
         }
-        cudanDto.setNgayChuyenDen(LocalDate.now());
+        if (cudanDto.getNgayChuyenDen() == null) {
+            cudanDto.setNgayChuyenDen(LocalDate.now());
+        }
         CuDan cuDan = cuDanMapper.fromCudanDto(cudanDto);
         cuDanRepository.save(cuDan);
         return new ResponseDto(true, "Thêm cư dân thành công");

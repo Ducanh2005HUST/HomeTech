@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,4 +15,5 @@ public class ChuHoDto {
     private String soDienThoai;
     private String email;
     private String trangThaiCuTru;
+    private LocalDate ngayChuyenDen;
 }
