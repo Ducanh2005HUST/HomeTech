@@ -1,0 +1,109 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Xin chào",
+        "Chào bạn",
+        "Có ai ở đó không?",
+        "Hello"
+      ],
+      "responses": [
+        "Xin chào! Tôi là trợ lý ảo hỗ trợ cư dân chung cư. Tôi có thể giúp gì cho bạn?",
+        "Chào bạn! Bạn cần hỗ trợ thông tin gì về chung cư?"
+      ]
+    },
+    {
+      "tag": "amenities",
+      "patterns": [
+        "Chung cư có tiện ích gì?",
+        "Danh sách tiện ích",
+        "Có hồ bơi không?",
+        "Có phòng gym không?"
+      ],
+      "responses": [
+        "Chung cư có đầy đủ tiện ích: hồ bơi, phòng gym, khu vui chơi trẻ em, sân vườn...",
+        "Tiện ích bao gồm: 1. Hồ bơi ngoài trời 2. Phòng gym 3. Khu BBQ 4. Sân chơi trẻ em"
+      ]
+    },
+    {
+      "tag": "parking",
+      "patterns": [
+        "Chỗ để xe thế nào?",
+        "Có bãi đỗ xe không?",
+        "Giá gửi xe",
+        "Quy định về xe"
+      ],
+      "responses": [
+        "Mỗi căn hộ được cấp 1 thẻ xe ô tô và 2 thẻ xe máy miễn phí",
+        "Bãi xe ngầm 2 tầng, giá gửi xe: Ô tô 500k/tháng, xe máy 100k/tháng"
+      ]
+    },
+    {
+      "tag": "payment",
+      "patterns": [
+        "Đóng phí thế nào?",
+        "Cách thanh toán phí dịch vụ",
+        "Nộp tiền điện nước ở đâu?",
+        "Thanh toán online được không?"
+      ],
+      "responses": [
+        "Bạn có thể thanh toán tại văn phòng quản lý hoặc qua app bằng QR code",
+        "Phí dịch vụ có thể đóng qua app hoặc chuyển khoản tới STK: 123456789 - MB Bank"
+      ]
+    },
+    {
+      "tag": "contact",
+      "patterns": [
+        "Số điện thoại quản lý",
+        "Liên hệ bảo vệ",
+        "Gặp ai khi có sự cố?",
+        "Hotline"
+      ],
+      "responses": [
+        "Văn phòng quản lý: 0243.123.456 (8h-17h hàng ngày)",
+        "Bảo vệ: 0912.345.678 (24/24)",
+        "Sự cố điện nước: 0901.234.567"
+      ]
+    },
+    {
+      "tag": "rules",
+      "patterns": [
+        "Nội quy chung cư",
+        "Quy định về nuôi chó mèo",
+        "Giờ giấc ra vào",
+        "Quy tắc an ninh"
+      ],
+      "responses": [
+        "1. Không gây ồn sau 22h 2. Không thả rông thú cưng 3. Xuất trình thẻ cư dân khi vào cổng",
+        "Nội quy chi tiết xem tại mục 'Quy định' trong app hoặc tại sảnh tầng 1"
+      ]
+    },
+    {
+      "tag": "complaint",
+      "patterns": [
+        "Khiếu nại",
+        "Phản ánh mất vệ sinh",
+        "Tố cáo vi phạm",
+        "Gửi góp ý"
+      ],
+      "responses": [
+        "Vui lòng gửi phản ánh qua mục 'Khiếu nại' trong app hoặc gọi 0243.123.456",
+        "Mọi góp ý xin gửi qua email: feedback@chungcu.com hoặc inbox fanpage"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Tạm biệt",
+        "Cảm ơn",
+        "Hẹn gặp lại",
+        "Thôi nhé"
+      ],
+      "responses": [
+        "Cảm ơn bạn! Chúc bạn một ngày tốt lành!",
+        "Nếu cần thêm hỗ trợ, tôi luôn sẵn sàng giúp đỡ. Tạm biệt!"
+      ]
+    }
+  ]
+}
