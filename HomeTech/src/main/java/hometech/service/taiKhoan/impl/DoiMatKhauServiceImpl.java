@@ -5,7 +5,7 @@ import hometech.model.dto.taiKhoan.DoiMatKhauDto;
 import hometech.model.entity.TaiKhoan;
 import hometech.repository.TaiKhoanRepository;
 import hometech.service.taiKhoan.DoiMatKhauService;
-import hometech.util.HashPasswordUtil;
+import hometech.util.PasswordUtil;
 import hometech.session.Session;
 import org.springframework.stereotype.Service;
 
@@ -24,15 +24,19 @@ public class DoiMatKhauServiceImpl implements DoiMatKhauService {
         // Truy vấn tài khoản (không cần kiểm tra null vì đã đăng nhập)
         TaiKhoan taiKhoan = taiKhoanRepository.findById(email).orElse(null);
         // So sánh mật khẩu cũ
-        if (!HashPasswordUtil.verifyPassword(doiMatKhauDto.getMatKhauCu(), taiKhoan.getMatKhau())) {
+        if (!PasswordUtil.verifyPassword(doiMatKhauDto.getMatKhauCu(), taiKhoan.getMatKhau())) {
             return new ResponseDto(false, "Mật khẩu hiện tại không đúng");
+        }
+        // Kiểm tra định dạng mật khẩu mới
+        if (!PasswordUtil.isValidPasswordFormat(doiMatKhauDto.getMatKhauMoi())) {
+            return new ResponseDto(false, "Mật khẩu mới không đúng định dạng");
         }
         // So sánh mật khẩu mới và xác nhận
         if (!doiMatKhauDto.getMatKhauMoi().equals(doiMatKhauDto.getXacNhanMatKhauMoi())) {
             return new ResponseDto(false, "Mật khẩu mới và xác nhận không khớp");
         }
         // Cập nhật mật khẩu mới
-        taiKhoan.setMatKhau(HashPasswordUtil.hashPassword(doiMatKhauDto.getMatKhauMoi()));
+        taiKhoan.setMatKhau(PasswordUtil.hashPassword(doiMatKhauDto.getMatKhauMoi()));
         taiKhoanRepository.save(taiKhoan);
         return new ResponseDto(true, "Đổi mật khẩu thành công");
     }

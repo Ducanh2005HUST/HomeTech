@@ -8,7 +8,7 @@ import hometech.model.entity.TaiKhoan;
 import hometech.model.mapper.TaiKhoanMapper;
 import hometech.repository.TaiKhoanRepository;
 import hometech.service.taiKhoan.DangNhapServive;
-import hometech.util.HashPasswordUtil;
+import hometech.util.PasswordUtil;
 import hometech.session.Session;
 import hometech.model.dto.ResponseDto;
 
@@ -29,7 +29,7 @@ public class DangNhapServiceImpl implements DangNhapServive {
         if (taiKhoan == null) {
             return new ResponseDto(false, "Tài khoản không tồn tại");
         }
-        boolean isMatch = HashPasswordUtil.verifyPassword(dangNhapDto.getMatKhau(), taiKhoan.getMatKhau());
+        boolean isMatch = PasswordUtil.verifyPassword(dangNhapDto.getMatKhau(), taiKhoan.getMatKhau());
         if (!isMatch) {
             return new ResponseDto(false, "Mật khẩu không đúng");
         }

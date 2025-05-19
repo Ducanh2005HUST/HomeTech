@@ -6,8 +6,7 @@ import hometech.model.entity.TaiKhoan;
 import hometech.model.mapper.TaiKhoanMapper;
 import hometech.repository.TaiKhoanRepository;
 import hometech.service.taiKhoan.DangKiService;
-import hometech.util.HashPasswordUtil;
-import hometech.util.GeneratePasswordUtil;
+import hometech.util.PasswordUtil;
 import hometech.service.taiKhoan.EmailService;
 import hometech.session.Session;
 
@@ -38,10 +37,10 @@ public class DangKiServiceImpl implements DangKiService {
             return new ResponseDto(false, "Email đã tồn tại");
         }
         // Tạo mật khẩu ngẫu nhiên
-        String matKhau = GeneratePasswordUtil.generate();
+        String matKhau = PasswordUtil.generatePassword();
         // Tạo tài khoản mới
         TaiKhoan taiKhoan = taiKhoanMapper.fromDangKiDto(dangKiDto);
-        taiKhoan.setMatKhau(HashPasswordUtil.hashPassword(matKhau));
+        taiKhoan.setMatKhau(PasswordUtil.hashPassword(matKhau));
         taiKhoan.setNgayTao(LocalDateTime.now());
         taiKhoan.setNgayCapNhat(LocalDateTime.now());
         taiKhoanRepository.save(taiKhoan);

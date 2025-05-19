@@ -3,7 +3,7 @@ package hometech.service.taiKhoan.impl;
 import hometech.model.entity.TaiKhoan;
 import hometech.repository.TaiKhoanRepository;
 import hometech.util.OtpUtil;
-import hometech.util.HashPasswordUtil;
+import hometech.util.PasswordUtil;
 import hometech.model.dto.ResponseDto;
 import hometech.model.dto.taiKhoan.DatLaiMatKhauDto;
 import hometech.service.taiKhoan.QuenMatKhauService;
@@ -74,7 +74,7 @@ public class QuenMatKhauServiceImpl implements QuenMatKhauService {
         if (!dto.getMatKhauMoi().equals(dto.getXacNhanMatKhauMoi())) {
             return new ResponseDto(false, "Mật khẩu mới và xác nhận mật khẩu không khớp");
         }
-        taiKhoan.setMatKhau(HashPasswordUtil.hashPassword(dto.getMatKhauMoi()));
+        taiKhoan.setMatKhau(PasswordUtil.hashPassword(dto.getMatKhauMoi()));
         taiKhoan.setOtp(null);
         taiKhoan.setThoiHanOtp(null);
         taiKhoan.setNgayCapNhat(LocalDateTime.now());
