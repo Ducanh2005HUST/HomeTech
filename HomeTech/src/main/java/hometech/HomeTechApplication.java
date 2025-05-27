@@ -1,13 +1,23 @@
 package hometech;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import hometech.util.NavigationUtil;
 
-@SpringBootApplication
-public class HomeTechApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(HomeTechApplication.class, args);
+public class HomeTechApplication extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+        NavigationUtil.openHomeList(primaryStage);
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
+
+
