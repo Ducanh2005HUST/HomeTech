@@ -67,6 +67,15 @@
                   <Insets />
                </VBox.margin>
             </HBox>
+            <HBox fx:id="text1" alignment="CENTER_LEFT" prefWidth="640.0" spacing="20.0">
+               <padding>
+                  <Insets left="30.0" right="30.0" top="10.0" />
+               </padding>
+               <children>
+                  <CheckBox fx:id="choiceBoxThemChuSoHuu" mnemonicParsing="false" text="Thêm chủ sở hữu vào danh sách cư dân của căn hộ" />
+                  <DatePicker fx:id="datePickerNgayChuyenDen" maxWidth="1.7976931348623157E308" prefWidth="202.0" promptText="Nhập ngày chuyển đến" />
+               </children>
+            </HBox>
             <HBox alignment="CENTER_LEFT" prefWidth="640.0" spacing="20.0">
                <children>
                   <ComboBox fx:id="comboBoxTinhTrangKiThuat" maxWidth="1.7976931348623157E308" promptText="Tình trạng kĩ thuật" HBox.hgrow="ALWAYS" />
@@ -112,14 +121,6 @@
                <children>
                   <TextField fx:id="textFieldSoDienThoai" promptText="Nhập số điện thoai" styleClass="text-field-normal" HBox.hgrow="ALWAYS" />
                   <TextField fx:id="textFieldEmail" layoutX="349.0" layoutY="20.0" promptText="Nhập email" styleClass="text-field-normal" HBox.hgrow="ALWAYS" />
-               </children>
-            </HBox>
-            <HBox fx:id="text1" alignment="CENTER_LEFT" layoutX="11.0" layoutY="97.0" prefWidth="640.0" spacing="20.0">
-               <padding>
-                  <Insets left="30.0" right="30.0" top="10.0" />
-               </padding>
-               <children>
-                  <CheckBox fx:id="choiceBoxThemChuSoHuu" mnemonicParsing="false" text="Thêm chủ sở hữu vào danh sách cư dân của căn hô" />
                </children>
             </HBox>
          </children>
