@@ -71,8 +71,8 @@ public class CanHoServiceImpl implements CanHoService {
         if (Session.getCurrentUser() == null || !"Tổ phó".equals(Session.getCurrentUser().getVaiTro())) {
             return new ResponseDto(false, "Bạn không có quyền cập nhật căn hộ. Chỉ Tổ phó mới được phép.");
         }
-        if (canHoRepository.existsById(canHoDto.getMaCanHo())) {
-            return new ResponseDto(false, "Căn hộ đã tồn tại");
+        if (!canHoRepository.existsById(canHoDto.getMaCanHo())) {
+            return new ResponseDto(false, "Căn hộ không tồn tại");
         }
         CanHo canHo = canHoMapper.fromCanHoDto(canHoDto);
         canHoRepository.save(canHo);
