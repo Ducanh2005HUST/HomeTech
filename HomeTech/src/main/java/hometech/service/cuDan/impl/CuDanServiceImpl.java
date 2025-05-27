@@ -53,7 +53,8 @@ public class CuDanServiceImpl implements CuDanService {
         }
         if (cuDanRepository.existsById(cudanDto.getMaDinhDanh())) {
             return new ResponseDto(false, "Cư dân đã tồn tại");
-        }if (cudanDto.getMaCanHo() != null && !canHoRepository.existsById(cudanDto.getMaCanHo())) {
+        }
+        if (cudanDto.getMaCanHo() != null && !canHoRepository.existsById(cudanDto.getMaCanHo())) {
             return new ResponseDto(false, "Không tìm thấy căn hộ");
         }
         if (cudanDto.getNgayChuyenDen() == null) {

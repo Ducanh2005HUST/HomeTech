@@ -6,8 +6,10 @@ import hometech.model.entity.TaiKhoan;
 import hometech.repository.TaiKhoanRepository;
 import hometech.model.dto.ResponseDto;
 import hometech.session.Session;
+import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
+@Service
 public class QuanLyTaiKhoanServiceImpl implements QuanLyTaiKhoanService {
     private final TaiKhoanRepository taiKhoanRepository;
 
