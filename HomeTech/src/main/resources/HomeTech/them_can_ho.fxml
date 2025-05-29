@@ -73,7 +73,7 @@
                </padding>
                <children>
                   <CheckBox fx:id="choiceBoxThemChuSoHuu" mnemonicParsing="false" text="Thêm chủ sở hữu vào danh sách cư dân của căn hộ" />
-                  <DatePicker fx:id="datePickerNgayChuyenDen" maxWidth="1.7976931348623157E308" prefWidth="202.0" promptText="Nhập ngày chuyển đến" />
+                  <DatePicker fx:id="datePickerNgayChuyenDen" disable="true" maxWidth="1.7976931348623157E308" prefWidth="202.0" promptText="Nhập ngày chuyển đến" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefWidth="640.0" spacing="20.0">
@@ -97,7 +97,7 @@
             <Insets left="30.0" right="30.0" />
          </VBox.margin>
       </VBox>
-      <VBox fx:id="vBoxChuSoHuu" prefWidth="640.0" spacing="5.0">
+      <VBox fx:id="vBoxChuSoHuu" disable="true" prefWidth="640.0" spacing="5.0">
          <children>
             <Label styleClass="screen-title" text="Thông tin chủ sở hữu">
                <VBox.margin>

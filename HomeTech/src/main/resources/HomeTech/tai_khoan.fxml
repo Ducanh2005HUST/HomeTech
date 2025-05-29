@@ -31,7 +31,7 @@
                   </Group>
                </graphic>
             </Button>
-            <Label layoutY="9.59999942779541" styleClass="popup-title" text="Thêm tài khoản" />
+            <Label fx:id="labelTieuDe" layoutY="9.59999942779541" styleClass="popup-title" text="Thêm tài khoản" />
          </children>
          <VBox.margin>
             <Insets left="30.0" right="30.0" top="10.0" />
@@ -50,28 +50,10 @@
                         <Insets top="10.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="20.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Label prefHeight="16.0" styleClass="text-bold" text="Vai trò" HBox.hgrow="ALWAYS" />
-                        <ComboBox fx:id="comboBoxVaiTro" maxWidth="1.7976931348623157E308" promptText="Vài trò" HBox.hgrow="ALWAYS" />
-                     </children>
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </HBox>
                </children>
                <padding>
                   <Insets left="30.0" right="30.0" />
                </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="20.0">
-               <padding>
-                  <Insets left="30.0" right="30.0" top="10.0" />
-               </padding>
-               <children>
-                  <Label prefHeight="16.0" styleClass="text-bold" text="Họ và tên" HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="textFieldHoVaTen" promptText="Nhập họ và tên" styleClass="text-field-normal" HBox.hgrow="ALWAYS" />
-               </children>
             </HBox>
             <HBox layoutX="11.0" layoutY="155.0" spacing="20.0">
                <children>
@@ -94,6 +76,31 @@
                <padding>
                   <Insets left="30.0" right="30.0" />
                </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <padding>
+                  <Insets left="30.0" right="30.0" />
+               </padding>
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="20.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label prefHeight="16.0" styleClass="text-bold" text="Họ và tên" />
+                        <TextField fx:id="textFieldHoVaTen" promptText="Nhập họ và tên" styleClass="text-field-normal" HBox.hgrow="ALWAYS" />
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="20.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label prefHeight="16.0" styleClass="text-bold" text="Vai trò" HBox.hgrow="ALWAYS" />
+                        <ComboBox fx:id="comboBoxVaiTro" maxWidth="1.7976931348623157E308" promptText="Vài trò" HBox.hgrow="ALWAYS" />
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
             </HBox>
          </children>
          <padding>
@@ -119,22 +126,69 @@
             <Insets left="30.0" right="30.0" />
          </VBox.margin>
       </TextFlow>
-      <Button fx:id="buttonThemCuDan" mnemonicParsing="false" text="Thêm tài khoản">
-         <graphic>
-            <Group>
-               <children>
-                  <FontAwesomeIcon glyphName="CHECK" styleClass="action-button-icon" />
-               </children>
-            </Group>
-         </graphic>
-         <styleClass>
-            <String fx:value="action-button" />
-            <String fx:value="button-green" />
-         </styleClass>
+      <StackPane>
          <VBox.margin>
             <Insets bottom="20.0" />
          </VBox.margin>
-      </Button>
+         <children>
+            <Button fx:id="buttonThemCuDan" mnemonicParsing="false" text="Thêm tài khoản">
+               <graphic>
+                  <Group>
+                     <children>
+                        <FontAwesomeIcon glyphName="CHECK" styleClass="action-button-icon" />
+                     </children>
+                  </Group>
+               </graphic>
+               <styleClass>
+                  <String fx:value="action-button" />
+                  <String fx:value="button-green" />
+               </styleClass>
+            </Button>
+            <Button fx:id="buttonLuu" mnemonicParsing="false" text="Lưu" visible="false">
+               <graphic>
+                  <Group>
+                     <children>
+                        <FontAwesomeIcon glyphName="SAVE" styleClass="action-button-icon" />
+                     </children>
+                  </Group>
+               </graphic>
+               <styleClass>
+                  <String fx:value="action-button" />
+                  <String fx:value="button-orange" />
+               </styleClass>
+            </Button>
+            <HBox fx:id="hBoxChinhSuaXoaTaiKhoan" alignment="CENTER" spacing="20.0" visible="false">
+               <children>
+                  <Button fx:id="buttonChinhSua" mnemonicParsing="false" text="Chỉnh sửa">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <FontAwesomeIcon glyphName="EDIT" styleClass="action-button-icon" />
+                           </children>
+                        </Group>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="action-button" />
+                        <String fx:value="button-sky-blue" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="buttonXoaTaiKhoan" mnemonicParsing="false" text="Xóa tài khoản">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <FontAwesomeIcon glyphName="TRASH" styleClass="action-button-icon" />
+                           </children>
+                        </Group>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="action-button" />
+                        <String fx:value="button-red" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
    </children>
    <styleClass>
       <String fx:value="round-big" />
