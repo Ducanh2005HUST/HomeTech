@@ -35,7 +35,7 @@
          <children>
             <VBox alignment="CENTER" spacing="20.0">
                <children>
-                  <Label styleClass="theme-text-color" text="Đăng nhập bằng email">
+                  <Label styleClass="theme-text-color" text="Đặt lại mật khẩu">
                      <font>
                         <Font name="Arial Bold" size="36.0" />
                      </font>
@@ -45,25 +45,27 @@
                   </Label>
                   <VBox spacing="10.0">
                      <children>
-                        <Label text="Địa chỉ email">
-                           <VBox.margin>
-                              <Insets left="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <TextField fx:id="textFieldEmail" prefHeight="55.0" promptText="Nhập địa chỉ email">
-                           <font>
-                              <Font name="Arial" size="18.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </VBox>
-                  <VBox spacing="10.0">
-                     <children>
-                        <Label text="Mật khẩu">
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
-                        </Label>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label text="Mật khẩu mới">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <CheckBox fx:id="checkBoxHienMatKhau" mnemonicParsing="false" onAction="#showPassword" text="Hiện mật khẩu">
+                                 <font>
+                                    <Font name="Arial" size="18.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="item-text" />
+                                    <String fx:value="theme-text-color" />
+                                    <String fx:value="having-action" />
+                                    <String fx:value="theme-labellike-button" />
+                                 </styleClass>
+                              </CheckBox>
+                           </children>
+                        </HBox>
                         <StackPane>
                            <children>
                               <PasswordField fx:id="passwordFieldMatKhau" prefHeight="55.0" promptText="Nhập mật khẩu">
@@ -80,23 +82,45 @@
                         </StackPane>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER">
+                  <VBox spacing="10.0">
                      <children>
-                        <CheckBox fx:id="checkBoxHienMatKhau" mnemonicParsing="false" onAction="#showPassword" text="Hiện mật khẩu">
-                           <font>
-                              <Font name="Arial" size="18.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="item-text" />
-                              <String fx:value="theme-text-color" />
-                              <String fx:value="having-action" />
-                              <String fx:value="theme-labellike-button" />
-                           </styleClass>
-                        </CheckBox>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Button fx:id="buttonQuenMatKhau" mnemonicParsing="false" styleClass="button-textlike" text="Quên mật khẩu?" />
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label text="Xác nhận mật khẩu">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <CheckBox fx:id="checkBoxHienXacNhanMatKhau" mnemonicParsing="false" onAction="#showPassword" text="Hiện mật khẩu">
+                                 <font>
+                                    <Font name="Arial" size="18.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="item-text" />
+                                    <String fx:value="theme-text-color" />
+                                    <String fx:value="having-action" />
+                                    <String fx:value="theme-labellike-button" />
+                                 </styleClass>
+                              </CheckBox>
+                           </children>
+                        </HBox>
+                        <StackPane>
+                           <children>
+                              <PasswordField fx:id="passwordFieldXacNhanMatKhau" prefHeight="55.0" promptText="Nhập mật khẩu">
+                                 <font>
+                                    <Font name="Arial" size="18.0" />
+                                 </font>
+                              </PasswordField>
+                              <TextField fx:id="textFieldXacNhanMatKhau" prefHeight="55.0" promptText="Nhập mật khẩu">
+                                 <font>
+                                    <Font name="Arial" size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </StackPane>
                      </children>
-                  </HBox>
+                  </VBox>
                   <VBox spacing="10.0">
                      <children>
                         <TextFlow prefWidth="640.0" textAlignment="CENTER">
@@ -108,18 +132,10 @@
                               </Text>
                            </children>
                         </TextFlow>
-                        <Button fx:id="buttonDangNhap" mnemonicParsing="false" prefHeight="55.0" prefWidth="600.0" styleClass="action-button" text="Đăng nhập">
+                        <Button fx:id="buttonLuuMatKhau" mnemonicParsing="false" prefHeight="55.0" prefWidth="600.0" styleClass="action-button" text="Lưu mật khẩu">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
-                        </Button>
-                        <Button fx:id="buttonNhanDienKhuonMat" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="600.0" styleClass="wait-button" text="Đăng nhập bằng nhận diện khuôn mặt">
-                           <font>
-                              <Font name="Arial Bold" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
                         </Button>
                      </children>
                   </VBox>
