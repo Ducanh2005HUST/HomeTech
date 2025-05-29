@@ -16,7 +16,7 @@ public class KhungLauncher extends Application {
     public void start(Stage primaryStage) {
         try {
             // Load file khung.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeTech/khung.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeTech/dang_nhap.fxml"));
             Parent root = loader.load();
             
             Scene scene = new Scene(root, 1280, 720); // Set kích thước cố định 1280x720

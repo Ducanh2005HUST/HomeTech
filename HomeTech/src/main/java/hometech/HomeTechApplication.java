@@ -23,7 +23,7 @@ public class HomeTechApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeTech/khung.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeTech/dang_nhap.fxml"));
         loader.setControllerFactory(springContext::getBean);
         Parent root = loader.load();
 
