@@ -59,6 +59,16 @@
                         </Group>
                      </graphic>
                   </Button>
+
+                  <Button fx:id="buttonThuPhi" alignment="TOP_LEFT" layoutX="20.0" layoutY="164.0" mnemonicParsing="false" styleClass="menu-button" text="Lịch sử thu">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <FontAwesomeIcon glyphName="DATABASE" size="30px" styleClass="menu-icon" />
+                           </children>
+                        </Group>
+                     </graphic>
+                  </Button>
                   <Button fx:id="buttonTaiKhoan" alignment="TOP_LEFT" layoutX="20.0" layoutY="167.0" mnemonicParsing="false" onAction="#goToTaiKhoan" styleClass="menu-button" text="Tài khoản">
                      <graphic>
                         <Group>

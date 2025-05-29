@@ -172,6 +172,7 @@
     -fx-pref-height: 30px;
     -fx-text-fill: #333333;
     -fx-font-size: 14px;
+    -fx-cursor: hand;
 }
 
 .combo-box .label {
@@ -283,6 +284,7 @@
 .check-box {
     -fx-font-size: 14px;
     -fx-text-fill: #333333;
+    -fx-cursor: hand;
 }
 
 .check-box .box {
@@ -291,7 +293,6 @@
     -fx-border-radius: 3;
     -fx-background-radius: 3;
     -fx-padding: 3;
-    -fx-cursor: hand;
 }
 
 .check-box:selected .box {
@@ -346,6 +347,10 @@
     -fx-fill: red;
     -fx-font-size: 14px;
     -fx-font-family: "Arial";
+}
+
+.button-delete-file: hover .button-delete-file-icon {
+    -fx-fill: #C0504D;
 }
 
 

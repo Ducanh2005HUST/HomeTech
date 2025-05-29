@@ -5,7 +5,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -46,7 +45,7 @@
       </AnchorPane>
       <StackPane>
          <children>
-            <AnchorPane fx:id="anchorPaneThongTin" prefHeight="370.0" visible="false">
+            <AnchorPane fx:id="anchorPaneThongTin" prefHeight="370.0">
                <children>
                   <VBox spacing="10.0">
                      <children>
@@ -270,11 +269,10 @@
                                     <TableView prefWidth="565.0">
                                        <columns>
                                           <TableColumn fx:id="tableColumnMaDinhDanh" minWidth="-1.0" prefWidth="116.7999866604805" text="Mã định danh" />
-                                          <TableColumn fx:id="tableColumnHoVaTen" prefWidth="112.00001525878906" text="Họ và tên" />
-                                          <TableColumn fx:id="tableColumnNgaySinh" prefWidth="90.40010070800781" text="Ngày sinh" />
-                                          <TableColumn fx:id="tableColumnGioiTinh" prefWidth="68.800048828125" text="Giới tính" />
-                                          <TableColumn fx:id="tableColumnTrangThaiCuDan" prefWidth="79.20001220703125" text="Trạng thái" />
-                                          <TableColumn fx:id="tableColumnThaoTacCuDan" prefWidth="91.99996948242188" text="Thao tác" />
+                                          <TableColumn fx:id="tableColumnHoVaTen" prefWidth="161.60006713867188" text="Họ và tên" />
+                                          <TableColumn fx:id="tableColumnNgaySinh" prefWidth="108.79998779296875" text="Ngày sinh" />
+                                          <TableColumn fx:id="tableColumnGioiTinh" prefWidth="76.0" text="Giới tính" />
+                                          <TableColumn fx:id="tableColumnTrangThaiCuDan" prefWidth="99.99990844726562" text="Trạng thái" />
                                        </columns>
                                     </TableView>
                                  </children>
@@ -311,7 +309,7 @@
                   <Insets left="30.0" right="30.0" />
                </StackPane.margin>
             </AnchorPane>
-            <AnchorPane fx:id="anchorPanePhuongTien" layoutX="10.0" layoutY="10.0" prefHeight="370.0">
+            <AnchorPane fx:id="anchorPanePhuongTien" layoutX="10.0" layoutY="10.0" prefHeight="370.0" visible="false">
                <children>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="310.0" prefWidth="640.0" style="-fx-background: white;">
                      <padding>
@@ -419,7 +417,7 @@
                                           <TableColumn fx:id="tableColumnTenKhoanThu" minWidth="-1.0" prefWidth="152.00003051757812" text="Tên khoản thu" />
                                           <TableColumn fx:id="tableColumnSoTien" prefWidth="96.79998779296875" text="Số tiền" />
                                           <TableColumn fx:id="tableColumnHanThu" prefWidth="120.0" text="Hạn thu" />
-                                          <TableColumn fx:id="tableColumnThaoTacThuPhi" minWidth="-1.0" prefWidth="89.59994506835938" text="Thao tác" />
+                                          <TableColumn fx:id="tableColumnThaoTacThuPhi" minWidth="-1.0" prefWidth="83.19998168945312" text="Thao tác" />
                                        </columns>
                                     </TableView>
                                  </children>
@@ -451,37 +449,33 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox layoutX="172.0" layoutY="31.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="40.0">
-                           <children>
-                              <Button fx:id="buttonThuToanBo" mnemonicParsing="false" text="Thu toàn bộ">
-                                 <styleClass>
-                                    <String fx:value="action-button" />
-                                    <String fx:value="button-green" />
-                                 </styleClass>
-                                 <graphic>
-                                    <Group>
-                                       <children>
-                                          <FontAwesomeIcon glyphName="CHECK" styleClass="action-button-icon" />
-                                       </children>
-                                    </Group>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="buttonXemLichSu" mnemonicParsing="false" text="Xem lịch sử thu phí">
-                                 <graphic>
-                                    <Group>
-                                       <children>
-                                          <FontAwesomeIcon glyphName="EDIT" styleClass="action-button-icon" />
-                                       </children>
-                                    </Group>
-                                 </graphic>
-                                 <styleClass>
-                                    <String fx:value="action-button" />
-                                    <String fx:value="button-sky-blue" />
-                                 </styleClass>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <CheckBox fx:id="checkBoxKhongTinhBatBuoc" layoutX="238.0" layoutY="5.0" mnemonicParsing="false" text="Không tính các khoản bắt buộc" AnchorPane.rightAnchor="0.0" />
+                        <HBox layoutX="172.0" layoutY="31.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="40.0" />
+                        <Button fx:id="buttonThuToanBo" layoutX="146.0" layoutY="1.0" mnemonicParsing="false" text="Thu toàn bộ khoản bắt buộc" AnchorPane.rightAnchor="0.0">
+                           <styleClass>
+                              <String fx:value="action-button" />
+                              <String fx:value="button-green" />
+                           </styleClass>
+                           <graphic>
+                              <Group>
+                                 <children>
+                                    <FontAwesomeIcon glyphName="CHECK" styleClass="action-button-icon" />
+                                 </children>
+                              </Group>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="buttonXemLichSu" layoutX="236.0" layoutY="39.0" mnemonicParsing="false" text="Xem lịch sử thu phí" AnchorPane.topAnchor="40.0">
+                           <graphic>
+                              <Group>
+                                 <children>
+                                    <FontAwesomeIcon glyphName="EDIT" styleClass="action-button-icon" />
+                                 </children>
+                              </Group>
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="action-button" />
+                              <String fx:value="button-sky-blue" />
+                           </styleClass>
+                        </Button>
                      </children>
                   </AnchorPane>
                </children>

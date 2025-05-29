@@ -10,6 +10,7 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -252,18 +253,19 @@
                            <children>
                               <TableView fx:id="tabelViewCanHo" prefWidth="970.0">
                                 <columns>
-                                  <TableColumn fx:id="tableColumnMaCanHo" prefWidth="93.59999924898148" text="Mã căn hộ" />
-                                  <TableColumn fx:id="tableColumnToaNha" prefWidth="80.00003051757812" text="Tòa nhà" />
-                                    <TableColumn fx:id="tableColumnTang" prefWidth="62.40003967285156" text="Tầng" />
-                                    <TableColumn fx:id="tableColumnChuSoHuu" prefWidth="280.0000457763672" text="Chủ sở hữu" />
-                                    <TableColumn fx:id="tableColumnTrangThai" prefWidth="306.39996337890625" text="Trạng thái">
+                                  <TableColumn fx:id="tableColumnMaCanHo" prefWidth="120.00003510713577" text="Mã căn hộ" />
+                                  <TableColumn fx:id="tableColumnToaNha" prefWidth="64.0" text="Tòa nhà" />
+                                    <TableColumn fx:id="tableColumnTang" prefWidth="55.20001220703125" text="Tầng" />
+                                    <TableColumn fx:id="tableColumnSoNha" prefWidth="92.00004577636719" text="Số nhà" />
+                                    <TableColumn fx:id="tableColumnDienTich" prefWidth="96.79998779296875" text="Diện tích" />
+                                    <TableColumn fx:id="tableColumnChuSoHuu" prefWidth="192.0" text="Chủ sở hữu" />
+                                    <TableColumn fx:id="tableColumnTrangThai" prefWidth="368.0" text="Trạng thái">
                                        <columns>
                                           <TableColumn fx:id="tableColumnSoHuu" prefWidth="100.7999267578125" text="Sở hữu" />
                                           <TableColumn fx:id="tableColumnKiThuat" prefWidth="117.5999755859375" text="Kĩ thuật" />
                                           <TableColumn fx:id="tableColumnSuDung" prefWidth="128.0" text="Sử dụng" />
                                        </columns>
                                     </TableColumn>
-                                    <TableColumn fx:id="tableColumnThaoTac" prefWidth="104.79998779296875" text="Thao tác" />
                                 </columns>
                               </TableView>
                               <AnchorPane prefWidth="970.0">
@@ -367,13 +369,14 @@
                            <children>
                               <TableView fx:id="tabelViewCuDan" prefWidth="970.0">
                                  <columns>
-                                    <TableColumn fx:id="tableColumnMaDinhDanh" prefWidth="121.59999924898148" text="Mã định danh" />
-                                    <TableColumn fx:id="tableColumnHoVaTen" prefWidth="181.60000610351562" text="Họ và tên" />
-                                    <TableColumn fx:id="tableColumnGioiTinh" prefWidth="112.79998779296875" text="Giới tính" />
-                                    <TableColumn fx:id="tableColumnNgaySinh" prefWidth="127.20004272460938" text="Ngày sinh" />
-                                    <TableColumn fx:id="tableColumnMaCanHoCuDan" prefWidth="148.79998779296875" text="Mã căn hộ" />
-                                    <TableColumn fx:id="tableColumnTrangThaiCuDan" prefWidth="165.5999755859375" text="Trạng thái" />
-                                    <TableColumn fx:id="tableColumnThaoTacCuDan" prefWidth="115.199951171875" text="Thao tác" />
+                                    <TableColumn fx:id="tableColumnMaDinhDanh" prefWidth="121.59999924898148" resizable="false" text="Mã định danh" />
+                                    <TableColumn fx:id="tableColumnHoVaTen" prefWidth="136.00001525878906" resizable="false" text="Họ và tên" />
+                                    <TableColumn fx:id="tableColumnGioiTinh" resizable="false" text="Giới tính" />
+                                    <TableColumn fx:id="tableColumnNgaySinh" prefWidth="116.0" resizable="false" text="Ngày sinh" />
+                                    <TableColumn fx:id="tableColumnMaCanHoCuDan" prefWidth="101.5999755859375" resizable="false" text="Mã căn hộ" />
+                                    <TableColumn fx:id="tableColumnNgayChuyenDen1" prefWidth="144.7999267578125" resizable="false" text="Số điện thoại" />
+                                    <TableColumn fx:id="tableColumnNgayChuyenDen" prefWidth="154.39996337890625" resizable="false" text="Ngày chuyển đến" />
+                                    <TableColumn fx:id="tableColumnTrangThaiCuDan" prefWidth="108.800048828125" resizable="false" text="Trạng thái" />
                                  </columns>
                               </TableView>
                               <AnchorPane prefWidth="970.0">
@@ -427,7 +430,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </StackPane.margin>
       </ScrollPane>
-      <ScrollPane fx:id="scrollPaneKhoanThu" hbarPolicy="NEVER" layoutX="30.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background: white;" visible="false">
+      <ScrollPane fx:id="scrollPaneKhoanThu" hbarPolicy="NEVER" layoutX="30.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background: white;">
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
@@ -468,11 +471,11 @@
                                  <columns>
                                     <TableColumn fx:id="tableColumnMaKhoanThu" prefWidth="107.19997483491898" text="Mã khoản thu" />
                                     <TableColumn fx:id="tableColumnTenKhoanThu" prefWidth="156.800048828125" text="Tên khoản thu" />
-                                    <TableColumn fx:id="tableColumnNgayTao" prefWidth="123.20001220703125" text="Ngày tạo" />
                                     <TableColumn fx:id="tableColumnLoaiKhoanThu" prefWidth="121.5999755859375" text="Loại khoản thu" />
-                                    <TableColumn fx:id="tableColumnBoPhanQuanLy" prefWidth="200.00006103515625" text="Bộ phận quản lý" />
-                                    <TableColumn fx:id="tableColumnTrangThaiHoaDon" prefWidth="154.39996337890625" text="Trạng thái hóa đơn" />
-                                    <TableColumn fx:id="tableColumnThaoTacKhoanThu" prefWidth="105.60009765625" text="Thao tác" />
+                                    <TableColumn fx:id="tableColumnBoPhanQuanLy" prefWidth="152.79998779296875" text="Bộ phận quản lý" />
+                                    <TableColumn fx:id="tableColumnNgayTao" prefWidth="151.20001220703125" text="Ngày tạo" />
+                                    <TableColumn fx:id="tableColumnNgayTao1" prefWidth="124.79998779296875" text="Hạn nộp" />
+                                    <TableColumn fx:id="tableColumnTrangThaiHoaDon" prefWidth="151.199951171875" text="Trạng thái hóa đơn" />
                                  </columns>
                               </TableView>
                               <AnchorPane prefWidth="970.0">
@@ -498,10 +501,10 @@
                      <children>
                         <TextField fx:id="textFieldMaKhoanThu" prefWidth="195.0" promptText="Nhập mã khoản thu" styleClass="text-field-normal" />
                         <TextField fx:id="textFieldTenKhoanThu" prefWidth="210.0" promptText="Nhập tên khoản thu" styleClass="text-field-normal" />
-                        <TextField fx:id="textFieldLoaiKhoanThu" layoutX="240.0" layoutY="10.0" prefWidth="206.0" promptText="Nhập loại khoản thu" styleClass="text-field-normal" />
                         <TextField fx:id="textFieldBoPhanQuanLy" layoutX="421.0" layoutY="10.0" prefWidth="206.0" promptText="Nhập bộ phận quản lý" styleClass="text-field-normal" />
+                        <ComboBox fx:id="comboBoxLoaiKhoanThu" prefWidth="187.0" promptText="Bắt buộc" style="-fx-background-color: transaprent;" />
                         <ComboBox fx:id="comboBoxTrangThaiHoaDon" layoutX="722.0" layoutY="10.0" prefWidth="187.0" promptText="Trạng thái" style="-fx-background-color: transaprent;" />
-                        <Button fx:id="buttonTimKiemCuDan1" mnemonicParsing="false" prefWidth="150.0" text="Tìm kiếm">
+                        <Button fx:id="buttonTimKiemKhoanThu" mnemonicParsing="false" prefWidth="150.0" text="Tìm kiếm">
                            <styleClass>
                               <String fx:value="action-button" />
                               <String fx:value="button-default-blue" />
@@ -637,6 +640,95 @@
          <StackPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </StackPane.margin>
+      </ScrollPane>
+      <ScrollPane fx:id="scrollPaneKhoanThu1" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background: white;" visible="false">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <content>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="960.0">
+               <children>
+                  <AnchorPane prefWidth="970.0" AnchorPane.topAnchor="40.0">
+                     <children>
+                        <Button fx:id="buttonXuatExcelThuPhi" mnemonicParsing="false" text="Xuất excel" AnchorPane.rightAnchor="0.0">
+                           <graphic>
+                              <Group>
+                                 <children>
+                                    <FontAwesomeIcon glyphName="DOWNLOAD" styleClass="action-button-icon" />
+                                 </children>
+                              </Group>
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="action-button" />
+                              <String fx:value="button-orange" />
+                           </styleClass>
+                        </Button>
+                        <VBox layoutY="40.0" prefWidth="970.0" spacing="10.0" AnchorPane.topAnchor="40.0">
+                           <children>
+                              <TableView fx:id="tabelViewThuPhi" prefWidth="970.0">
+                                 <columns>
+                                    <TableColumn fx:id="tableColumnMaHoaDon" prefWidth="107.19997483491898" text="Mã hóa đơn" />
+                                    <TableColumn fx:id="tableColumnMaCanHoThuPhi" prefWidth="123.20001220703125" text="Mã căn hộ" />
+                                    <TableColumn fx:id="tableColumnTenKhoanThu1" prefWidth="156.800048828125" text="Tên khoản thu" />
+                                    <TableColumn fx:id="tableColumnLoaiKhoanThuThuPhi" prefWidth="121.5999755859375" text="Loại khoản thu" />
+                                    <TableColumn fx:id="tableColumnSoTien" prefWidth="201.5999755859375" text="Số tiền" />
+                                    <TableColumn fx:id="tableColumnNgayNop" prefWidth="154.39996337890625" text="Ngày nộp" />
+                                    <TableColumn fx:id="tableColumnThaoTac1" prefWidth="105.60009765625" text="Thao tác" />
+                                 </columns>
+                              </TableView>
+                              <AnchorPane prefWidth="970.0">
+                                 <children>
+                                    <Label fx:id="labelHienThiKetQua1" layoutY="8.0" text="Hiển thị 0/0 kết quả" AnchorPane.leftAnchor="0.0">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="comboBoxResultNumberThuPhi" layoutX="895.0" layoutY="4.0" prefWidth="74.0" promptText="10" AnchorPane.topAnchor="0.0" />
+                                    <Label layoutX="768.0" layoutY="7.0" text="Số kết quả hiển thị">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="46.0" layoutY="-35.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label styleClass="text-bold" text="Mã căn hộ" />
+                              <TextField fx:id="textFieldMaCanHoThuPhi" prefWidth="195.0" promptText="Nhập mã căn hộ" styleClass="text-field-normal" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                  <HBox alignment="TOP_RIGHT" prefWidth="970.0" spacing="20.0">
+                     <children>
+                        <TextField fx:id="textFieldMaHoaDon" prefWidth="195.0" promptText="Nhập mã hóa đơn" styleClass="text-field-normal" />
+                        <TextField fx:id="textFieldTenKhoanThu1" prefWidth="210.0" promptText="Nhập tên khoản thu" styleClass="text-field-normal" />
+                        <ComboBox fx:id="comboBoxLoaiKhoanThu1" layoutX="722.0" layoutY="10.0" prefWidth="187.0" promptText="Bắt buộc" style="-fx-background-color: transaprent;" />
+                        <DatePicker fx:id="datePickerNgayNop" promptText="Nhập ngày nộp" />
+                        <Button fx:id="buttonTimKiemThuPhi" mnemonicParsing="false" prefWidth="150.0" text="Tìm kiếm">
+                           <styleClass>
+                              <String fx:value="action-button" />
+                              <String fx:value="button-default-blue" />
+                           </styleClass>
+                           <graphic>
+                              <Group>
+                                 <children>
+                                    <FontAwesomeIcon glyphName="SEARCH" styleClass="action-button-icon" />
+                                 </children>
+                              </Group>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </content>
+         <styleClass>
+            <String fx:value="white-background" />
+            <String fx:value="round-big" />
+         </styleClass>
       </ScrollPane>
    </children>
 </StackPane>
